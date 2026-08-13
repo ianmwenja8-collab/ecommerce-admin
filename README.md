@@ -1,16 +1,45 @@
-# React + Vite
+# Project Showcase Admin Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An admin portal for an e-commerce store, built with React + Vite. Lets an administrator view products, search them, add new products, and update or delete existing ones.
 
-Currently, two official plugins are available:
+## Features
+- Landing page describing the store
+- Product listing with live search
+- Add new product (POST)
+- View single product + edit price/stock (PATCH)
+- Delete product (DELETE)
+- Client-side routing across 4+ pages
+- Shared product state via Context + custom hooks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
+- React (Vite)
+- React Router
+- json-server (simulated backend)
+- Vitest + React Testing Library
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# start the mock API (port 3001)
+npx json-server --watch db.json --port 3001
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# start the dev server (in a second terminal)
+npm run dev
+
+# run tests
+npm run test
+```
+
+## Known Limitations
+- No authentication — anyone can access the admin portal
+- Data resets whenever db.json is reset (no real database)
+- No image upload — products use placeholder/URL images only
+
+## Team
+- Ian — Routing & Landing
+- Allan — Add Product Form
+- Edger — Product Display, Search & Editing
+- Victor — Data Services, Context, Git & Testing
