@@ -1,18 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/nav.jsx";
 import LandingPage from "./Pages/Landingpage.jsx";
-import Productpage from "./Pages/Productpage.jsx";
-import Searchpage from "./Pages/SearchPage.jsx";
+import ProductPage from "./Pages/Productpage.jsx";
+import SearchPage from "./Pages/SearchPage.jsx";
+import AddProductPage from "./Pages/AddProductPage.jsx";
 import Layout from "./components/layout.jsx";
+import { ProductProvider } from "./components/ProductContext.jsx";
+
 function App() {
   return (
     <BrowserRouter>
-      <div className="app">
-        <Navbar />
+      <ProductProvider>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/product" element={<ProductPage />} />
+            <Route path="/products" element={<ProductPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/add-product" element={<AddProductPage />} />
+          </Route>
         </Routes>
-      </div>
+      </ProductProvider>
     </BrowserRouter>
   );
 }

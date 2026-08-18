@@ -5,11 +5,9 @@ function Layout() {
   return (
     <div className="app-container">
       <Navbar />
-
       <main className="main-content">
         <Outlet />
       </main>
-
       <footer className="footer">
         <p>&copy; {new Date().getFullYear()} E-Commerce Admin Portal</p>
       </footer>
