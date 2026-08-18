@@ -39,35 +39,137 @@ body {
   color: #d40094;
 }
 
-.landing-page {
-  text-align: center;
-  padding: 4rem 2rem;
+.landing-hero {
+  min-height: 390px;
 }
 
-.landing-page h1 {
-  font-size: 3rem;
-  color: #303a44;
-  margin-bottom: 1rem;
+.landing-hero-copy {
+  position: relative;
+  z-index: 2;
 }
 
-.landing-page p {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 2rem;
+.landing-trust {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: #b9c8dc;
+  font-size: 11px;
 }
 
-.cta-button {
-  background-color: #441623;
-  color: rgb(149, 140, 140);
-  border: none;
-  padding: 12px 24px;
-  cursor: pointer;
-  border-radius: 5px;
+.trust-dot {
+  width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(34, 166, 153, 0.8);
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.cta-button:hover {
-  background-color: #8c1f7c;
+.landing-art {
+  min-height: 240px;
 }
+
+.art-orbit {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 50%;
+}
+
+.orbit-one {
+  width: 280px;
+  height: 280px;
+  right: -20px;
+  top: -18px;
+}
+
+.orbit-two {
+  width: 190px;
+  height: 190px;
+  right: 25px;
+  top: 27px;
+  border-color: rgba(239, 131, 84, 0.32);
+}
+
+.landing-art .hero-stat {
+  right: 14px;
+  bottom: 16px;
+}
+
+.art-mini-card {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 2;
+  width: 142px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 14px;
+  color: #c2cee1;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.art-mini-card span {
+  display: block;
+  font-size: 10px;
+}
+
+.art-mini-card strong {
+  display: block;
+  margin-top: 4px;
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+}
+
+.art-mini-card i {
+  display: block;
+  height: 4px;
+  margin-top: 9px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.art-mini-card i b {
+  display: block;
+  width: 86%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--teal);
+}
+
+.quick-card {
+  position: relative;
+}
+
+.quick-arrow {
+  position: absolute;
+  right: 18px;
+  bottom: 17px;
+  color: var(--accent);
+  font-size: 16px;
+  transition: transform 0.18s ease;
+}
+
+.quick-card:hover .quick-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 700px) {
+  .landing-hero {
+    min-height: 0;
+  }
+
+  .landing-trust {
+    margin-bottom: 4px;
+  }
+}
+
 
 @media (max-width: 768px) {
   .landing-page h1 {

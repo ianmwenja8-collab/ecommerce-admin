@@ -31,6 +31,22 @@
       "price": 11,
       "stock": 5,
       "id": "O4MMh8yuz1o"
+    },
+    {
+      "name": "Kepta",
+      "description": "leaves",
+      "origin": "Kisii",
+      "price": 43,
+      "stock": 30,
+      "id": "FCkNmhWlLiY"
+    },
+    {
+      "name": "Milk",
+      "description": "Drink",
+      "origin": "Kiambu",
+      "price": 60,
+      "stock": 300,
+      "id": "Fb11DaDOywg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
