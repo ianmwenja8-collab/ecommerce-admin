@@ -17,7 +17,7 @@ function AddProductPage() {
   }
 
   return (
-    <div>
+    <div className="add-product-page">
       <h1>Add a Product</h1>
       <ProductForm onSubmit={handleAddProduct} />
     </div>

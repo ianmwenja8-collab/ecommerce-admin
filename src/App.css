@@ -78,3 +78,101 @@ body {
     flex-direction: column;
   }
 }
+
+/*Add Product Page Styles*/
+.add-product-page {
+  min-height: calc(100vh - 70px);
+  padding: 48px 24px;
+  background: #f8fafc;
+}
+
+.add-product-page > h1 {
+  max-width: 760px;
+  margin: 0 auto 28px;
+  padding: 28px 32px;
+  color: #0f172a;
+  background: #dbeafe;
+  border-left: 6px solid #2563eb;
+  border-radius: 14px;
+  font-size: 2.4rem;
+  letter-spacing: -0.04em;
+}
+
+.add-product-page > form {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Labels and inputs are direct children in your current ProductForm */
+.add-product-page > form > label {
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 700;
+  align-self: center;
+}
+
+.add-product-page > form > input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.add-product-page > form > input:focus {
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.add-product-page > form > button {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  padding: 14px 20px;
+  color: #ffffff;
+  background: #2563eb;
+  border: 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-product-page > form > button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 650px) {
+  .add-product-page {
+    padding: 28px 16px;
+  }
+
+  .add-product-page > h1 {
+    padding: 22px;
+    font-size: 2rem;
+  }
+
+  .add-product-page > form {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .add-product-page > form > button {
+    grid-column: auto;
+  }
+}
