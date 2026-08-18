@@ -14,13 +14,12 @@ export default function SearchPage() {
 
   return (
     <div className="p-8 space-y-8 max-w-5xl mx-auto">
-      {/* Search Product Header (No Admin header) */}
+  
       <div className="border-b border-slate-200 pb-4">
         <h2 className="text-2xl font-bold text-slate-800">Search Product</h2>
         <p className="text-sm text-slate-500 mt-1">Look up inventory items by name or category and click view to check details.</p>
       </div>
 
-      {/* Search Input Bar */}
       <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
         <input
           type="text"
@@ -31,7 +30,6 @@ export default function SearchPage() {
         />
       </div>
 
-      {/* Search Results Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredProducts.map(product => (
           <div key={product.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm flex flex-col justify-between">

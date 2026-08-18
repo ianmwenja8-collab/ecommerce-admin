@@ -2,12 +2,11 @@ import { useState } from 'react';
 import EditProductForm from './EditProductForm';
 
 export default function ProductCard({ product, onUpdateProduct, onDeleteProduct }) {
-  // State to track whether the card is currently in edit mode
+
   const [isEditing, setIsEditing] = useState(false);
-  // State to track whether the detailed view panel is open
+
   const [isViewing, setIsViewing] = useState(false);
 
-  // Handles saving the updated product name and exiting edit mode
   const handleSave = (newName) => {
     console.log("Saving new name for product ID:", product.id, "New Name:", newName);
     onUpdateProduct(product.id, { name: newName });
@@ -24,7 +23,7 @@ export default function ProductCard({ product, onUpdateProduct, onDeleteProduct 
           <span className="text-xs text-slate-500 font-medium">{product.status || "In Stock"}</span>
         </div>
 
-        {/* Conditionally render EditProductForm or product name */}
+        /* Conditionally render EditProductForm or product name */
         {isEditing ? (
           <EditProductForm
             initialValue={product.name}
@@ -33,7 +32,7 @@ export default function ProductCard({ product, onUpdateProduct, onDeleteProduct 
           />
         ) : (
           <div>
-            {/* Clickable Product Name to open/close details */}
+            /* Clickable Product Name to open/close details */
             <h3 
               onClick={() => {
                 console.log("Toggling view details for product:", product.name);
