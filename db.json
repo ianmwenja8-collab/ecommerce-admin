@@ -15,6 +15,15 @@
       "origin": "Vietnam",
       "price": 12,
       "stock": 40
+    },
+    {
+      "name": "Kepta",
+      "description": "leaves",
+      "origin": "Kisii",
+      "price": 7,
+      "stock": 9,
+      "id": "Jsi-doCXuI0"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

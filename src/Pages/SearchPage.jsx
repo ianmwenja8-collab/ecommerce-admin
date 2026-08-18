@@ -7,7 +7,6 @@ export default function SearchPage() {
 
   console.log("Rendering SearchPage with search term:", searchTerm);
 
-  // Filter products by name or category matching search query
   const filteredProducts = initialProducts.filter(p => 
     p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     p.category.toLowerCase().includes(searchTerm.toLowerCase())
@@ -50,7 +49,6 @@ export default function SearchPage() {
         ))}
       </div>
 
-      {/* View Product Details Modal */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
           <div className="bg-white rounded-xl p-6 max-w-md w-full shadow-xl space-y-4">

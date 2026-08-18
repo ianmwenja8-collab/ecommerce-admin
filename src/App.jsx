@@ -5,6 +5,7 @@ import SearchPage from "./Pages/SearchPage.jsx";
 import AddProductPage from "./Pages/AddProductPage.jsx";
 import Layout from "./components/layout.jsx";
 import { ProductProvider } from "./components/ProductContext.jsx";
+import "./App.css";
 
 function App() {
   return (
