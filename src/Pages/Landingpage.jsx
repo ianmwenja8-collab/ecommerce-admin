@@ -6,7 +6,7 @@ function LandingPage() {
             <div className="topbar">
                 <div>
                     <div className="eyebrow">Tuesday, August 18, 2026</div>
-                    <h1 className="page-title">Welcome to Tisya</h1>
+                    <h1 className="page-title">Welcome to ShopAdmin</h1>
                     <p className="page-subtitle">Store is looking healthy.Here is a clear view of what is happening today.</p>
                 </div>
                 <div className="topbar-date">Admin overview</div>

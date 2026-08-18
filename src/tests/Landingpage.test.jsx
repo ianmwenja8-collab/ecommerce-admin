@@ -15,8 +15,8 @@ test("renders get started button", () => {
     render(<LandingPage />);
 
     expect(
-        screen.getByRole("button", {
-            name: /Get Started/i,
+        screen.getByRole("link", {
+            name: /Add a product/i,
         })
     ).toBeInTheDocument();
 });
