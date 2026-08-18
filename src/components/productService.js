@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5173/product";
+const BASE_URL = "http://localhost:3001/products";
 
 // GET all products
 export async function getProducts() {
