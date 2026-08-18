@@ -3,6 +3,7 @@ import Navbar from "./components/nav.jsx";
 import LandingPage from "./Pages/Landingpage.jsx";
 import Productpage from "./Pages/Productpage.jsx";
 import Searchpage from "./Pages/SearchPage.jsx";
+import Layout from "./components/layout.jsx";
 function App() {
   return (
     <BrowserRouter>
