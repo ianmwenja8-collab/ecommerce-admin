@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LandingPage from "./pages/LandingPage.jsx";
+import LandingPage from "../Pages/Landingpage.jsx";
 
 describe("LandingPage Component", () => {
     test("renders welcome heading", () => {
@@ -8,7 +8,7 @@ describe("LandingPage Component", () => {
         expect(
             screen.getByText(/welcome to ShopAdmin/i)
         ).toBeInTheDocument();
-    }
+    })
 });
 
 test("renders get started button", () => {

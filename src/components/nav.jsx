@@ -8,15 +8,15 @@ function Navbar() {
 
             <ul className="nav-links">
                 <li>
-                    <link to="/">Home</link>
+                    <Link to="/">Home</Link>
                 </li>
 
                     <li>
-                        <link to="/product">Products</link>
+                        <Link to="/product">Products</Link>
                     </li>
 
                     <li>
-                        <link to="/add-product">Add Product</link>
+                        <Link to="/add-product">Add Product</Link>
                     </li>
 
             </ul>
