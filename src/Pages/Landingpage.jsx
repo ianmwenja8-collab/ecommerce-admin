@@ -3,20 +3,32 @@ import React from "react";
 function LandingPage() {
     return (
         <div className="Landing-page">
-            <div className="topbar">
-                <div>
-                    <div className="eyebrow">Tuesday, August 18, 2026</div>
-                    <h1 className="page-title">Welcome to ShopAdmin</h1>
-                    <p className="page-subtitle">Store is looking healthy.Here is a clear view of what is happening today.</p>
-                </div>
-                <div className="topbar-date">Admin overview</div>
-            </div>
+           <div className="topbar">
+    <div className="topbar-brand">
+        <h2>Tisya's Sales</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <a href="/add-product">Add Product</a>
+        </nav>
+    </div>
+
+    <div className="welcome-content">
+        <h1 className="page-title">Welcome to ShopAdmin</h1>
+        <p className="page-subtitle">
+            Store is looking healthy. Here is a clear view of what is happening today.
+        </p>
+        <div className="topbar-date">Admin overview</div>
+    </div>
+
+    <div className="date-right">Tuesday, August 18, 2026</div>
+</div>
+
 
             <section className="hero-panel landing-hero">
                 <div className="landing-hero-copy">
                     <div className="eyebrow" style={{ color: "#f5b096"}}>The store is beautiful organised</div>
                 </div>
-                <h1>Welcome to ShopAdmin</h1>
                 <p>Manage products, update prices, monitor inventory and streamline your e-commere operations from one focused workspace</p>
                 <a className="button button-ghost" href="/add-product">Add a product</a>
 
@@ -46,11 +58,7 @@ function LandingPage() {
                     <div className="stat-value">07</div>
                     <div className="stat-note">added this month</div>
                 </div>
-                <div className="stat-card">
-                    <div className="stat-label">Healthy inventory</div>
-                    <div className="stat-value">86%</div>
-                    <div className="stat-note">half from last week</div>
-                </div>
+            
                 <div className="stat-card">
                     <div className="stat-label">Store status</div>
                     <div className="stat-value">Live</div>
