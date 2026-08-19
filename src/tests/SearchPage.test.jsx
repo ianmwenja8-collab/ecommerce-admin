@@ -1,25 +1,46 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import SearchPage from '../Pages/SearchPage';
 
-test('renders full list initially and filters list when typing', () => {
-  console.log("Starting SearchPage test...");
-  render(<SearchPage />);
+describe('SearchPage Component', () => {
+  test('renders initial product list correctly', async () => {
+    render(<SearchPage />);
 
-  // 1. Verify that multiple products show up initially
-  console.log("Checking initial render of product list.");
-  expect(screen.getByText('Wireless Noise-Canceling Headphones')).toBeInTheDocument();
-  expect(screen.getByText('Ergonomic Mesh Office Chair')).toBeInTheDocument();
+    expect(await screen.findByText('Vanilla Bean')).toBeInTheDocument();
+    expect(screen.getByText('House Blend')).toBeInTheDocument();
+    expect(screen.getByText('Kepta')).toBeInTheDocument();
+  });
 
-  // 2. Find the search input and type a filter keyword
-  const searchInput = screen.getByPlaceholderText(/search by name or category/i);
-  console.log("Typing 'Keyboard' into search input during test.");
-  fireEvent.change(searchInput, { target: { value: 'Keyboard' } });
+  test('filters products dynamically based on search query input', async () => {
+    render(<SearchPage />);
 
-  // 3. Assert that the matching item stays, and non-matching items disappear
-  console.log("Verifying filter results...");
-  expect(screen.getByText('Mechanical Gaming Keyboard (RGB)')).toBeInTheDocument();
-  
-  // queryByText returns null instead of throwing an error if the item is missing
-  expect(screen.queryByText('Ergonomic Mesh Office Chair')).not.toBeInTheDocument();
-  console.log("Search filtering test passed successfully!");
+    // Wait for initial load
+    expect(await screen.findByText('Vanilla Bean')).toBeInTheDocument();
+
+    // Type into the search input
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
+    fireEvent.change(searchInput, { target: { value: 'Vanilla' } });
+
+    // Verify filtered results
+    expect(screen.getByText('Vanilla Bean')).toBeInTheDocument();
+    expect(screen.queryByText('House Blend')).not.toBeInTheDocument();
+    expect(screen.queryByText('Kepta')).not.toBeInTheDocument();
+  });
+
+  test('shows empty state or no results message when query matches nothing', async () => {
+    render(<SearchPage />);
+
+    // Wait for initial load
+    expect(await screen.findByText('Vanilla Bean')).toBeInTheDocument();
+
+    // Type non-existent product search
+    const searchInput = screen.getByRole('textbox', { name: /search/i });
+    fireEvent.change(searchInput, { target: { value: 'NonExistentProductXYZ' } });
+
+    // Verify products are hidden or empty message shows up
+    expect(screen.queryByText('Vanilla Bean')).not.toBeInTheDocument();
+    expect(screen.queryByText('House Blend')).not.toBeInTheDocument();
+    expect(screen.queryByText('Kepta')).not.toBeInTheDocument();
+  });
 });

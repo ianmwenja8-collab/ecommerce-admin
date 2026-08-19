@@ -1,42 +1,47 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export default function EditProductForm({ initialValue, onSave, onCancel }) {
-  
-  // 1. STATE: Remembers what is currently typed in the input box
-  const [value, setValue] = useState(initialValue);
+export default function EditProductForm({ product, onSave, onCancel }) {
+  const [formData, setFormData] = useState({ ...product });
 
-  // 2. REF: Creates a direct link to the HTML input element
-  const inputRef = useRef(null);
-
-  // 3. EFFECT: Runs automatically when this form first appears on the screen
-  useEffect(() => {
-    console.log("EditProductForm mounted. Forcing focus on input.");
-    inputRef.current.focus();
-  }, []);
-
-  // 4. EVENT HANDLER: Listens for changes as you type on your keyboard
   const handleChange = (e) => {
-    console.log("User is typing. Current value is:", e.target.value);
-    setValue(e.target.value);
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  // 5. EVENT HANDLER: Listens for when the Save button is clicked
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Save button clicked. Submitting value:", value);
-    onSave(value);
+    onSave({
+      ...formData,
+      price: Number(formData.price),
+      stock: Number(formData.stock)
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        ref={inputRef}
-        type="text"
-        value={value}
-        onChange={handleChange}
-      />
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+    <form onSubmit={handleSubmit} >
+      <h3>Edit Product</h3>
+      <div >
+        <label>Name: </label>
+        <input type="text" name="name" value={formData.name || ''} onChange={handleChange} required />
+      </div>
+      <div >
+        <label>Description: </label>
+        <input type="text" name="description" value={formData.description || ''} onChange={handleChange} />
+      </div>
+      <div >
+        <label>Origin: </label>
+        <input type="text" name="origin" value={formData.origin || ''} onChange={handleChange} />
+      </div>
+      <div >
+        <label>Price: </label>
+        <input type="number" name="price" value={formData.price || ''} onChange={handleChange} required />
+      </div>
+      <div >
+        <label>Stock: </label>
+        <input type="number" name="stock" value={formData.stock || ''} onChange={handleChange} required />
+      </div>
+      <button type="submit" >Save</button>
+      <button type="button" onClick={onCancel} >Cancel</button>
     </form>
   );
 }

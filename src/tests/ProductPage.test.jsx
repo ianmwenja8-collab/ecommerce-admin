@@ -1,52 +1,63 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
-import ProductPage from '../Pages/Productpage';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import ProductPage from "../Pages/Productpage";
 
-global.fetch = vi.fn(() => {
-  console.log("Mock fetch intercepting network request.");
-  return Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve({ success: true }),
+// Mock products data
+const mockProducts = [
+  { id: '1', name: 'Wireless Mouse', description: 'Ergonomic mouse', origin: 'USA', price: 29.99, stock: 15 },
+  { id: '2', name: 'Mechanical Keyboard', description: 'RGB switches', origin: 'Germany', price: 89.99, stock: 8 },
+];
+
+describe('ProductPage Component', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
   });
-});
 
-test('renders product data correctly and updates via PATCH on edit', async () => {
-  console.log("Starting ProductPage test...");
-  render(<ProductPage />);
+  it('renders loading state initially and then displays fetched products', async () => {
+    // Mock global fetch for GET request
+    global.fetch = vi.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => mockProducts,
+    });
 
-  // 1. Check if the initial product data rendered on the screen
-  const productHeading = await screen.findByText('Wireless Noise-Canceling Headphones');
-  console.log("Found product heading in test:", productHeading.textContent);
-  expect(productHeading).toBeInTheDocument();
+    render(<ProductPage />);
 
-  // 2. Click the Edit button on the product card
-  const editButtons = screen.getAllByRole('button', { name: /edit/i });
-  console.log("Clicking Edit button for the first product.");
-  fireEvent.click(editButtons[0]);
+    // Check loading indicator if applicable, or wait for products to appear
+    expect(await screen.findByText('Wireless Mouse')).toBeInTheDocument();
+    expect(screen.getByText('Mechanical Keyboard')).toBeInTheDocument();
+    expect(screen.getByText('USA')).toBeInTheDocument();
+    expect(screen.getByText('Germany')).toBeInTheDocument();
+  });
 
-  // 3. Verify the input box appeared, is pre-filled, and automatically focused
-  const input = screen.getByDisplayValue('Wireless Noise-Canceling Headphones');
-  console.log("Edit input found and verified as focused.");
-  expect(input).toHaveFocus();
-
-  // 4. Type a new name into the input and click Save
-  fireEvent.change(input, { target: { value: 'Pro Wireless Headphones' } });
-  console.log("Changed input value to: Pro Wireless Headphones");
-  
-  const saveButton = screen.getByRole('button', { name: /save/i });
-  fireEvent.click(saveButton);
-  console.log("Clicked Save button.");
-
-  // 5. Verify that our PATCH request was sent to the server with the new data
-  await waitFor(() => {
-    console.log("Checking if global.fetch was called with PATCH method...");
-    expect(global.fetch).toHaveBeenCalledWith(
-      '/api/products/P-101',
-      expect.objectContaining({
-        method: 'PATCH',
-        body: JSON.stringify({ name: 'Pro Wireless Headphones' }),
+  it('handles product deletion correctly', async () => {
+    // Mock GET products
+    global.fetch = vi.fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => mockProducts,
       })
-    );
-    console.log("PATCH request verified successfully!");
+      // Mock DELETE request
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({}),
+      });
+
+    render(<ProductPage />);
+
+    // Wait for products to load
+    const mouseProduct = await screen.findByText('Wireless Mouse');
+    expect(mouseProduct).toBeInTheDocument();
+
+   
+    const deleteButtons = screen.getAllByRole('button', { name: /delete/i });
+    fireEvent.click(deleteButtons[0]);
+
+    
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/products/1'),
+        expect.objectContaining({ method: 'DELETE' })
+      );
+    });
   });
 });
